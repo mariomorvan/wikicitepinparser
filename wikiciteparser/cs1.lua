@@ -5145,6 +5145,9 @@ Date validation supporting code is in Module:Citation/CS1/Date_validation
         ['SeriesNumber'] = SeriesNumber,
         ['TitleType'] = TitleType,
         ['CitationClass'] = config.CitationClass,
+
+        ['Time'] = first_set ({A['Minutes'], A['Time']}, 2),
+        ['Quote'] = Quote,
     }; -- , config.CitationClass);
 
 end

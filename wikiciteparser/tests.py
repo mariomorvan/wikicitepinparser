@@ -173,6 +173,21 @@ class ParsingTests(unittest.TestCase):
             "CitationClass": "citation",
         })
 
+    def test_minutes_and_time_from_template(self):
+        import mwparserfromhell
+        tpl1 = mwparserfromhell.parse('{{Cite episode | minutes=10 }}').filter_templates()[0]
+        tpl2 = mwparserfromhell.parse('{{Cite episode | time=5 }}').filter_templates()[0]
+        res1 = parse_citation_template(tpl1)
+        res2 = parse_citation_template(tpl2)
+        self.assertTrue('Time' in res1 and res1['Time'] == '10')
+        self.assertTrue('Time' in res2 and res2['Time'] == '5')
+
+    def test_quote(self):
+        import mwparserfromhell
+        tpl1 = mwparserfromhell.parse('{{Citation | quote=blabla }}').filter_templates()[0]
+        res1 = parse_citation_template(tpl1)
+        self.assertTrue('Quote' in res1 and res1['Quote'] == 'blabla')
+
 
 class BulkXMLTests(unittest.TestCase):
     def test_basic_xml_parse(self):
