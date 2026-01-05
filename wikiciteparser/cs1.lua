@@ -836,6 +836,15 @@ local aliases = {
     ['PublicationPlace'] = {'publication-place', 'publicationplace'},
     ['PublisherName'] = {'publisher', 'distributor', 'institution', 'newsgroup'},
     ['Quote'] = {'quote', 'quotation'},
+    ['ScriptQuote'] = 'script-quote',
+    ['TransQuote'] = {'trans-quote', 'trans_quote'},
+    ['QuotePage'] = 'quotepage',
+    ['QuotePages'] = 'quotepages',
+    ['Panel'] = 'panel',
+    ['Pinpoint'] = 'pinpoint',
+    ['Opinion'] = 'opinion',
+    ['Scene'] = 'scene',
+    ['Level'] = 'level',
     ['Ref'] = 'ref',
     ['RegistrationRequired'] = 'registration',
     ['Scale'] = 'scale',
@@ -1683,6 +1692,16 @@ local basic_arguments = {
     ['publisher'] = true,
     ['quotation'] = true,
     ['quote'] = true,
+    ['script-quote'] = true,
+    ['trans-quote'] = true,
+    ['trans_quote'] = true,
+    ['quotepage'] = true,
+    ['quotepages'] = true,
+    ['panel'] = true,
+    ['pinpoint'] = true,
+    ['opinion'] = true,
+    ['scene'] = true,
+    ['level'] = true,
     ['ref'] = true,
     ['registration'] = true,
     ['rfc'] = true,
@@ -4688,6 +4707,15 @@ local function citation0( config, args)
     local ID_list = extract_ids( args );
 
     local Quote = A['Quote'];
+    local ScriptQuote = A['ScriptQuote'];
+    local TransQuote = A['TransQuote'];
+    local QuotePage = A['QuotePage'];
+    local QuotePages = A['QuotePages'];
+    local Panel = A['Panel'];
+    local Pinpoint = A['Pinpoint'];
+    local Opinion = A['Opinion'];
+    local Scene = A['Scene'];
+    local Level = A['Level'];
 
     local LayFormat = A['LayFormat'];
     local LayURL = A['LayURL'];
@@ -5147,7 +5175,13 @@ Date validation supporting code is in Module:Citation/CS1/Date_validation
         ['CitationClass'] = config.CitationClass,
 
         ['Time'] = first_set ({A['Minutes'], A['Time']}, 2),
-        ['Quote'] = Quote,
+        ['Quote'] = first_set ({ScriptQuote, Quote, TransQuote}, 3),
+        ['QuotePages'] = first_set ({QuotePage, QuotePages}, 2),
+        ['Panel'] = Panel,                                                  -- for 'Cite comic'
+        ['Pinpoint'] = Pinpoint,                                            -- for 'Cite court' template
+        ['Opinion'] = Opinion,                                              -- for 'Cite court' template
+        ['Scene'] = Scene,                                                  -- for 'Cite video game' template
+        ['Level'] = Level,                                                  -- for 'Cite video game' template
     }; -- , config.CitationClass);
 
 end

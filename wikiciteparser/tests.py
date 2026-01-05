@@ -188,6 +188,44 @@ class ParsingTests(unittest.TestCase):
         res1 = parse_citation_template(tpl1)
         self.assertTrue('Quote' in res1 and res1['Quote'] == 'blabla')
 
+    def test_new_keywords(self):
+        p = parse_citation_dict({
+            "title": "A Comic Book",
+            "panel": "5",
+            "quotepage": "10",
+            "quote": "I am a hero!"
+        }, template_name='cite comic')
+        self.assertEqual(p['Panel'], "5")
+        self.assertEqual(p['QuotePages'], "10")
+        self.assertEqual(p['Quote'], "I am a hero!")
+
+    def test_video_game_keywords(self):
+        p = parse_citation_dict({
+            "title": "Great Game",
+            "scene": "Intro",
+            "level": "1-1"
+        }, template_name='cite video game')
+        self.assertEqual(p['Scene'], "Intro")
+        self.assertEqual(p['Level'], "1-1")
+
+    def test_court_keywords(self):
+        p = parse_citation_dict({
+            "title": "Famous Case",
+            "pinpoint": "p. 123",
+            "opinion": "Majority"
+        }, template_name='cite court')
+        self.assertEqual(p['Pinpoint'], "p. 123")
+        self.assertEqual(p['Opinion'], "Majority")
+
+    def test_quote_variants(self):
+        p = parse_citation_dict({
+            "title": "Book",
+            "script-quote": "Foreign Quote",
+            "quotepages": "20-21"
+        }, template_name='cite book')
+        self.assertEqual(p['Quote'], "Foreign Quote")
+        self.assertEqual(p['QuotePages'], "20-21")
+
 
 class BulkXMLTests(unittest.TestCase):
     def test_basic_xml_parse(self):
