@@ -13,22 +13,25 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='wikiciteparser',
+    name='wikicitepinparser',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.3.0',
+    version='0.3.1',
 
-    description='A parser for wikipedia citation templates',
+    description='A parser for wikipedia citation templates with added pinpoint indicators',
     long_description=long_description,
     long_description_content_type='text/markdown',
 
     # The project's main homepage.
-    url='https://github.com/dissemin/wikiciteparser',
+    url='https://github.com/mariomorvan/wikicitepinparser',
 
-    # Author details
+    # Original author of wikiciteparser
     author='Antonin Delpeuch',
+    # Fork author
+    maintainer='Mario Morvan',
+    maintainer_email='mario.morvan@ucl.ac.uk',
 
     # Choose your license
     license='MIT',
